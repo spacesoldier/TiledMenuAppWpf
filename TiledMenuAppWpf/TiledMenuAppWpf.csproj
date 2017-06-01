@@ -55,6 +55,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="FileLoadHelper.cs" />
+    <Compile Include="Position.cs" />
     <Compile Include="TileImage.cs" />
     <Compile Include="TileImageViewModel.cs" />
     <Page Include="MainWindow.xaml">
