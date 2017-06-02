@@ -9,20 +9,48 @@ namespace TiledMenuAppWpf
 {
     public class TileImageViewModel
     {
-        private List<TileImage> images;
-        public List<TileImage> Images { get { return images; } set { images = value; } }
+        private List<List<TileImage>> images;
+        public List<List<TileImage>> Images { get { return images; } set { images = value; } }
 
-        public TileImageViewModel(string dirName)
+        private int gridSize;
+        public int GridSize { get { return gridSize;  } set { gridSize = value; } }
+
+        public TileImageViewModel(int size)
         {
-            List <FileInfo> files = FileLoadHelper.findPictures(dirName);
+            gridSize = size;
+            images = new List<List<TileImage>>();
+            for (int i = 0; i < gridSize; i++)
+            {
+                images.Add(new List<TileImage>());
+                for (int j = 0; j < gridSize; j++)
+                {
+                    images[i].Add(new TileImage("", ""));
+                }
+            }
+        }
 
-            Images = new List<TileImage>();
+        public TileImageViewModel(TileImageViewModel sourceModel)
+        {
+            gridSize = sourceModel.GridSize;
+            images = new List<List<TileImage>>();
+            for (int i = 0; i < gridSize; i++)
+            {
+                images.Add(new List<TileImage>());
+                for (int j = 0; j < gridSize; j++)
+                {
+                    images[i].Add(sourceModel.Images[i][j]);
+                }
+            }
+        }
+
+        public void readFolder(string dirName)
+        {
+            List<FileInfo> files = FileLoadHelper.findPictures(dirName);
 
             foreach (FileInfo f in files)
             {
-                TileImage img = new TileImage(f.Directory.Name+"/"+f.Name);
-
-                Images.Add(img);
+                TileImage img = new TileImage(f.Directory.Name, f.Name);
+                Images[img.Row][img.Col] = img;
             }
         }
     }

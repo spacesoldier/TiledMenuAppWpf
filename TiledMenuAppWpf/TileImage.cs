@@ -17,11 +17,24 @@ namespace TiledMenuAppWpf
         private int col;
         public int Col { get { return col; } set { col = value; } }
 
-        public TileImage(string location)
+        public TileImage(string directory, string filename)
         {
-            Path = location;
-            Row = 0;
-            Col = 0;
+            Path = directory +"/" + filename;
+            if (filename.Length > 1)
+            {
+                if (Char.IsDigit(filename[0]))
+                {
+                    Row = (int)Char.GetNumericValue(filename[0]);
+                }
+                if (Char.IsDigit(filename[1]))
+                {
+                    Col = (int)Char.GetNumericValue(filename[1]);
+                }
+            } else
+            {
+                Row = 0;
+                Col = 0;
+            }            
         }
     }
 }

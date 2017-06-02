@@ -25,9 +25,13 @@ namespace TiledMenuAppWpf
 
         public MainWindow()
         {
-            ImagesModel = new TileImageViewModel("img");
+            ImagesModel = new TileImageViewModel(3);
+            ImagesModel.readFolder("img");
 
             InitializeComponent();
+
+            ImageLoadHelper.loadImages(ImagesModel, this, "img");
+
             closeBtn.Visibility = Visibility.Hidden;
             closeBtn.Opacity = 1;
             settingsBtn.Visibility = Visibility.Hidden;
