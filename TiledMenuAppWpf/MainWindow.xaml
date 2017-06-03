@@ -47,12 +47,40 @@
             </Style.Triggers>
         </Style>
 
-        
-        
+        <Style x:Key="blinking" TargetType="{x:Type Image}">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Image.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="Opacity"
+                                From="1.0" To="0.0" Duration="0:0:0.5" 
+                                AutoReverse="True" RepeatBehavior="Forever" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="blinkingBorder" TargetType="{x:Type Border}">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Border.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="BorderBrush.Opacity"
+                                From="1.0" To="0.0" Duration="0:0:0.5" 
+                                AutoReverse="True" RepeatBehavior="Forever" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+
     </Window.Resources>
 
     <Grid Margin="10">
-        <Grid ShowGridLines="True" Margin="0">
+        <Grid ShowGridLines="False" Margin="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
@@ -65,18 +93,44 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
+
+            <Border Style="{StaticResource blinkingBorder}" Grid.Column="1" Grid.Row="0" BorderBrush="#FFD5F7F7" BorderThickness="5">
+                <Image x:Name="img00" Stretch="UniformToFill" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>
+            </Border>
+            <Border  Grid.Column="2" Grid.Row="0">
+                <Image x:Name="img01" Stretch="UniformToFill" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>    
+            </Border>
+
+            <Border Grid.Column="3" Grid.Row="0">
+                <Image x:Name="img02" Stretch="UniformToFill" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>    
+            </Border>
+
+            <Border Grid.Column="1" Grid.Row="1">
+                <Image x:Name="img10" Stretch="UniformToFill" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>    
+            </Border>
+
+            <Border Grid.Column="2" Grid.Row="1">
+                <Image x:Name="img11" Stretch="UniformToFill" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>    
+            </Border>
+
+            <Border Grid.Column="3" Grid.Row="1">
+                <Image x:Name="img12" Stretch="UniformToFill" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>    
+            </Border>
+
+            <Border Grid.Column="1" Grid.Row="2">
+                <Image x:Name="img20" Stretch="UniformToFill" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>    
+            </Border>
+
+            <Border Grid.Column="2" Grid.Row="2">
+                <Image x:Name="img21" Stretch="UniformToFill" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>    
+            </Border>
+
+            <Border Grid.Column="3" Grid.Row="2">
+                <Image x:Name="img22" Stretch="UniformToFill" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>    
+            </Border>
             
-            <Image x:Name="img00" Stretch="UniformToFill" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>
-            <Image x:Name="img01" Stretch="UniformToFill" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>
-            <Image x:Name="img02" Stretch="UniformToFill" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>
-            <Image x:Name="img10" Stretch="UniformToFill" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>
-            <Image x:Name="img11" Stretch="UniformToFill" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>
-            <Image x:Name="img12" Stretch="UniformToFill" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>
-            <Image x:Name="img20" Stretch="UniformToFill" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>
-            <Image x:Name="img21" Stretch="UniformToFill" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>
-            <Image x:Name="img22" Stretch="UniformToFill" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>
             
-            <Border  Grid.Column="4" Grid.Row="0"
+            <Border Grid.Column="4" Grid.Row="0"
                          MouseEnter="Border_MouseEnter"
                          MouseLeave="Border_MouseLeave"
                          HorizontalAlignment="Right" VerticalAlignment="Top"
