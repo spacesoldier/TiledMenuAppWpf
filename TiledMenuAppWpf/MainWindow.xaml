@@ -47,6 +47,8 @@
             </Style.Triggers>
         </Style>
 
+
+
         <Style x:Key="blinking" TargetType="{x:Type Image}">
             <Style.Triggers>
                 <EventTrigger RoutedEvent="Image.Loaded">
@@ -62,8 +64,29 @@
             </Style.Triggers>
         </Style>
 
+        <Storyboard x:Key="blinkingBorderAnimation">
+            <DoubleAnimation
+                                Storyboard.TargetProperty="BorderBrush.Opacity"
+                                From="1.0" To="0.0" Duration="0:0:0.5" 
+                                AutoReverse="True" RepeatBehavior="Forever" />
+        </Storyboard>
+
         <Style x:Key="blinkingBorder" TargetType="{x:Type Border}">
-            <Style.Triggers>
+            <Style.Resources>
+                <Storyboard x:Key="blinkingBorderAnimation">
+                    <DoubleAnimation
+                                Storyboard.TargetProperty="BorderBrush.Opacity"
+                                From="1.0" To="0.0" Duration="0:0:0.5" 
+                                AutoReverse="True" RepeatBehavior="Forever" />
+                </Storyboard>
+            </Style.Resources>
+            
+            <Style.Setters>
+                <Setter Property="BorderBrush" Value="#FFD5F7F7"></Setter>
+                <Setter Property="BorderThickness" Value="5"></Setter>
+            </Style.Setters>
+
+            <!--<Style.Triggers>
                 <EventTrigger RoutedEvent="Border.Loaded">
                     <BeginStoryboard>
                         <Storyboard>
@@ -74,7 +97,21 @@
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
-            </Style.Triggers>
+            </Style.Triggers>-->
+        </Style>
+        
+        <Style x:Key="selectedBorder" TargetType="{x:Type Border}">
+            <Style.Setters>
+                <Setter Property="BorderBrush" Value="#FFD5F7F7"></Setter>
+                <Setter Property="BorderThickness" Value="5"></Setter>
+            </Style.Setters>
+        </Style>
+
+        <Style x:Key="hiddenBorder" TargetType="{x:Type Border}">
+            <Style.Setters>
+                <Setter Property="BorderBrush" Value="#FF0E84E6"></Setter>
+                <Setter Property="BorderThickness" Value="5"></Setter>
+            </Style.Setters>
         </Style>
 
     </Window.Resources>
@@ -94,38 +131,38 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
-            <Border Style="{StaticResource blinkingBorder}" Grid.Column="1" Grid.Row="0" BorderBrush="#FFD5F7F7" BorderThickness="5">
+            <Border x:Name="border00" Grid.Column="1" Grid.Row="0">
                 <Image x:Name="img00" Stretch="UniformToFill" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>
             </Border>
-            <Border  Grid.Column="2" Grid.Row="0">
+            <Border x:Name="border01" Grid.Column="2" Grid.Row="0">
                 <Image x:Name="img01" Stretch="UniformToFill" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>    
             </Border>
 
-            <Border Grid.Column="3" Grid.Row="0">
+            <Border x:Name="border02" Grid.Column="3" Grid.Row="0">
                 <Image x:Name="img02" Stretch="UniformToFill" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>    
             </Border>
 
-            <Border Grid.Column="1" Grid.Row="1">
+            <Border x:Name="border10"  Grid.Column="1" Grid.Row="1">
                 <Image x:Name="img10" Stretch="UniformToFill" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>    
             </Border>
 
-            <Border Grid.Column="2" Grid.Row="1">
+            <Border x:Name="border11"  Grid.Column="2" Grid.Row="1">
                 <Image x:Name="img11" Stretch="UniformToFill" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>    
             </Border>
 
-            <Border Grid.Column="3" Grid.Row="1">
+            <Border x:Name="border12"  Grid.Column="3" Grid.Row="1">
                 <Image x:Name="img12" Stretch="UniformToFill" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>    
             </Border>
 
-            <Border Grid.Column="1" Grid.Row="2">
+            <Border x:Name="border20"  Grid.Column="1" Grid.Row="2">
                 <Image x:Name="img20" Stretch="UniformToFill" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>    
             </Border>
 
-            <Border Grid.Column="2" Grid.Row="2">
+            <Border x:Name="border21"  Grid.Column="2" Grid.Row="2">
                 <Image x:Name="img21" Stretch="UniformToFill" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>    
             </Border>
 
-            <Border Grid.Column="3" Grid.Row="2">
+            <Border x:Name="border22"  Grid.Column="3" Grid.Row="2">
                 <Image x:Name="img22" Stretch="UniformToFill" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" Height="Auto" Margin="10" VerticalAlignment="Center" Width="Auto"/>    
             </Border>
             

@@ -54,8 +54,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BlinkMapModel.cs" />
+    <Compile Include="ComPortDescriptor.cs" />
+    <Compile Include="ComPortManager.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="FileLoadHelper.cs" />
     <Compile Include="ImageLoadHelper.cs" />
+    <Compile Include="Position.cs" />
     <Compile Include="TileImage.cs" />
     <Compile Include="TileImageViewModel.cs" />
     <Page Include="MainWindow.xaml">

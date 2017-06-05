@@ -12,9 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace TiledMenuAppWpf
 {
+    public static class ExtensionMethods
+    {
+        private static Action EmptyDelegate = delegate () { };
+
+        public static void Refresh(this UIElement uiElement)
+        {
+            uiElement.Dispatcher.Invoke(DispatcherPriority.Render, EmptyDelegate);
+        }
+    }
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
@@ -22,6 +32,11 @@ namespace TiledMenuAppWpf
     {
         private TileImageViewModel imagesModel;
         public TileImageViewModel ImagesModel { get { return imagesModel; }  set { imagesModel = value; } }
+
+        public static BlinkMapModel blinkMapModel;
+        public static BlinkMapModel BlinkMapModel { get { return blinkMapModel; } set { blinkMapModel = value; } }
+
+        public ComPortManager SerialPortManager { get;  }
 
         public MainWindow()
         {
@@ -31,12 +46,19 @@ namespace TiledMenuAppWpf
             InitializeComponent();
 
             ImageLoadHelper.loadImages(ImagesModel, this, "img");
+            blinkMapModel = new BlinkMapModel(this,3,"border");
+            blinkMapModel.Blink = "blinkingBorder";
+            blinkMapModel.NoBlink = "hiddenBorder";
+            blinkMapModel.Selected = "selectedBorder";
+            blinkMapModel.initModel();
 
             closeBtn.Visibility = Visibility.Hidden;
             closeBtn.Opacity = 1;
             settingsBtn.Visibility = Visibility.Hidden;
             settingsBtn.Opacity = 1;
         }
+
+
 
         private void closeBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -70,6 +92,11 @@ namespace TiledMenuAppWpf
         {
             closeBtn.Visibility = Visibility.Hidden;
             closeBtn.Opacity = 1;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //blinkMapModel.initModel();
         }
     }
 }
